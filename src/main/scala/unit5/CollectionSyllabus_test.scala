@@ -143,9 +143,7 @@ object CollectionSyllabus_test {
     //map的作用是对集合中的每个元素 映射 一个方法
     def f1(x: String) = x.toLowerCase()
 
-    val listConvert = listOri.map(f1)
-    println(listConvert)
-
+    println(listOri.map(f1))
     println(listOri.map((x: String) => x toUpperCase))
     println(listOri.map(x => x toLowerCase))
 
@@ -180,10 +178,10 @@ object CollectionSyllabus_test {
     println(phoneList zip nameList)
 
     //stream
-    def numForm(n: String):Stream[String] = {
-      n #:: numForm("Sofia")
+    def Recursive(n: String):Stream[String] = {
+      n #:: Recursive("Sofia")
     }
-    val stream = numForm("AlvaroSoler")
+    val stream = Recursive("AlvaroSoler")
     println(stream)
     println(stream.tail)
     println(stream)

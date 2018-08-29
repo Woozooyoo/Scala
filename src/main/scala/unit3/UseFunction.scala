@@ -8,7 +8,7 @@ object UseFunction { //object 是UseFunction的伴生类对象，包含在内的
     println(sqrt(a))
     println(BigInt.probablePrime(10, scala.util.Random))
 
-    println("hello world".distinct)
+    println("hello world".distinct)//去重
 
     println("hello" (4))
     println("hello".apply(4))

@@ -16,7 +16,7 @@ object Match {
     }
 
     match1()
-    println("******上面是1、match 中的 switch用法:变量c match{case _ =>执行语句")
+    println("=========上面是1、match 中的 switch用法:变量c match{case _ =>执行语句")
 
     //2、匹配模式——守卫
     def match2() = {
@@ -34,7 +34,7 @@ object Match {
     }
 
     match2()
-    println("\n******上面是2、守卫 boolean语句和3、模式中的变量 把变量c传给value")
+    println("\n=========上面是2、守卫 boolean语句和3、模式中的变量 把变量c传给value")
 
     //4、类型匹配
     def match3() = {
@@ -62,7 +62,7 @@ object Match {
     }
 
     match3()
-    println("******上面是4、类型匹配")
+    println("=========上面是4、类型匹配")
 
     //5、匹配数组
     def match4() = {
@@ -100,7 +100,7 @@ object Match {
     }
 
     match4()
-    println("\n******上面是5、匹配数组、列表、元祖")
+    println("\n=========上面是5、匹配数组、列表、元祖")
 
     //6、匹配模式中的提取机制
     object Square {
@@ -117,7 +117,7 @@ object Match {
     }
 
     match5()
-    println("******上面是6、匹配的提取机制  **不懂")
+    println("=========上面是6、匹配的提取机制  **不懂")
 
 
     val (x, y) = (1, 2)
