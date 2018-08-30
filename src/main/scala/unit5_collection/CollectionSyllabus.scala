@@ -1,4 +1,4 @@
-package unit5
+package unit5_collection
 
 import scala.collection.mutable
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
@@ -227,7 +227,7 @@ object CollectionSyllabus {
     println(listOri.flatMap(_.toUpperCase())) //List(A, L, I, C, E, B, O, B, K, O, T, L, I, N)
     println("======================上面是8、集合元素 与函数映射======================")
 
-    /** ************ 9 化简 折叠 扫描 *********************************/
+    /************** 9 化简 折叠 扫描 *********************************/
     //Reduce
     val listReduced = List(1, 2, 3)
     //1-2) -3)

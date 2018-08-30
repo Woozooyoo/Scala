@@ -1,4 +1,4 @@
-package unit4
+package unit4_function
 
 object FunctionObject {
   def main(args: Array[String]): Unit = {

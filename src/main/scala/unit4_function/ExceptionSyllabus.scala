@@ -1,4 +1,4 @@
-package unit4
+package unit4_function
 
 object ExceptionSyllabus {
   def divider(x: Int, y: Int): Float = {
