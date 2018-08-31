@@ -2,7 +2,7 @@ package unit6_match
 
 object /*伴生类对象，不用构造器*/ Match {
   def main(args: Array[String]): Unit = {
-    /** ************ 1、match 中的 switch用法 *********************************/
+    println("/************** 1、match 中的 switch用法 *********************************/")
     def matchCase() = {
       var result = 0
       val c: Char = '*'
@@ -16,9 +16,8 @@ object /*伴生类对象，不用构造器*/ Match {
     }
 
     matchCase()
-    println("=========上面是1、match 中的 switch用法:变量c match{case _ =>执行语句")
 
-    /** ************ 2、匹配模式——守卫 *********************************/
+    println("/************** 2、匹配模式——守卫 和3、模式中的变量 把变量c传给value*********************************/")
     def matchGuard() = {
       for (c <- "+-*/123!") {
         c match {
@@ -34,9 +33,9 @@ object /*伴生类对象，不用构造器*/ Match {
     }
 
     matchGuard()
-    println("\n=========上面是2、守卫 boolean语句和3、模式中的变量 把变量c传给value")
+    println()
 
-    /** ************ 4、类型匹配 *********************************/
+    println("/************** 4、类型匹配 *********************************/")
     def matchClass() = {
       val a = 4 //4 和5的结果都是 第一个匹配的Map,因为
       val obj = if (a == 1) 1
@@ -62,9 +61,8 @@ object /*伴生类对象，不用构造器*/ Match {
     }
 
     matchClass()
-    println("=========上面是4、类型匹配")
 
-    /** ************ 5、匹配数组、列表、元组 *********************************/
+    println("/************** 5、匹配数组、列表、元组 *********************************/")
     def match5() = {
       for (arr <- Array(Array(0), Array(1, 0), Array(0, 1, 0), Array(1, 1, 0), Array(1, 1, 1, 0), Array(0, 0, 0, 0))) {
         arr match {
@@ -102,9 +100,9 @@ object /*伴生类对象，不用构造器*/ Match {
     }
 
     match5()
-    println("\n=========上面是5、匹配数组、列表、元组")
+    println()
 
-    /** ************ 6、匹配模式中的提取机制 *********************************/
+    println("/************** 6、匹配模式中的提取机制 *********************************/")
     object Square {
       def unapply(z: Double): Option[Double] = Some(math.sqrt(z))
     }
@@ -146,9 +144,8 @@ object /*伴生类对象，不用构造器*/ Match {
     }
 
     matchExtractSeq()
-    println("=========上面是6、匹配的提取机制  **略微懂")
 
-    /** ************ 7、变量声明中的模式，match中每一个case都可以单独提取出来 *********************************/
+    println("/************** 7、变量声明中的模式，match中每一个case都可以单独提取出来 *********************************/")
     val (x, y) = (1, 2)
     println(1, 2)
     println(x, y)
@@ -161,9 +158,8 @@ object /*伴生类对象，不用构造器*/ Match {
     println(first, second)
     val Array(fi, s, vec@_* /*将剩下的元素赋值给vec变量*/) = arr
     println(fi, s, vec)
-    println("=========上面是7、变量声明中的模式，match中每一个case都可以单独提取出来")
 
-    /** ************ 8 for表达式中的模式 *********************************/
+    println("/************** 8 for表达式中的模式 *********************************/")
     import scala.collection.JavaConverters._
     //    for ((k, v) <- System.getProperties.asScala)
     //      println(k + " -> " + v)
@@ -174,9 +170,8 @@ object /*伴生类对象，不用构造器*/ Match {
     println("-------")
     for ((k, v) <- System.getProperties.asScala if v == "")
       println(k, v)
-    println("=========上面是8 for表达式中的模式")
 
-    /** ************ 9 样例类 *********************************/
+    println("/************** 9 样例类 *********************************/")
     abstract class Amount
     //样例类它是为模式匹配而优化的类，样例类用case关键字进行声明
     //会自动创建apply和unapply方法，参数一样
@@ -197,24 +192,21 @@ object /*伴生类对象，不用构造器*/ Match {
     }
 
     matchSampleClass()
-    println("=========上面是9 样例类")
 
-    /** ************ 10 Copy方法和带名参数 *********************************/
+    println("/************** 10 Copy方法和带名参数 *********************************/")
     val amt = Currency(29.95, "EUR")
     val charge = amt.copy(value = 19.95)
     println(amt)
     println(charge)
     println(amt.copy(unit = "CHF"))
-    println("=========上面是10 Copy方法和带名参数")
 
-    /** ************ 11  Case语句的中置(缀)表达式 *********************************/
+    println("/************** 11  Case语句的中置(缀)表达式 *********************************/")
     List(1, 2, 3, 4) match {
       case first :: second :: rest => println(first + "," + second + "," + rest)
       case _ => 0
     }
-    println("=========上面是11  Case语句的中置(缀)表达式")
 
-    /** ************ 12  匹配嵌套结构   比如某一系列商品想捆绑打折出售 *********************************/
+    println("/************** 12  匹配嵌套结构  比如某一系列商品想捆绑打折出售 *********************************/")
     //  创建样例类
     abstract class Item //促销项目
     case class Article(description: String, price: Double) extends Item
@@ -262,10 +254,8 @@ object /*伴生类对象，不用构造器*/ Match {
     //                              price a2=>30
     //                               sum 80+30 =110  -20disc2 = 90
     //      40+90=130 -10disc1 =120
-    println("=========上面是12  匹配嵌套结构   比如某一系列商品想捆绑打折出售")
 
-    /** ************ 13  密封类 *********************************/
-    /** ************ 14  模拟枚举 *********************************/
+    println("/************** 13  密封类 14模拟枚举*********************************/")
     //1)  创建密封样例类（不密封也可以
     sealed abstract class TrafficLightColor
     //密封类的子类只能在同一个文件中创建
@@ -283,11 +273,11 @@ object /*伴生类对象，不用构造器*/ Match {
           case Green => "go"
         })
     }
-    println("=========上面是14  模拟枚举")
 
-    /** ************ 15  偏函数 *********************************/
-    //偏函数，它只对会作用于指定类型的参数或指定范围值的参数实施计算
-    val f: PartialFunction[Char, Int] = {
+    println("/************** 15  偏函数 *********************************/")
+    //偏函数，只有能力处理case的条件，超出case的条件没能力处理，
+    //它只对会作用于指定类型的参数或指定范围值的参数实施计算,如果函数体里只有模式匹配就是偏函数
+    val f: PartialFunction[Char /*传的参数*/ , Int /*结果*/ ] = {
       case '+' => 1
       case '-' => -1
       case _ => 10
@@ -295,22 +285,29 @@ object /*伴生类对象，不用构造器*/ Match {
     println(f('-'))
     println(f.isDefinedAt('0')) //f是否对传入参数 0 的情况定义
     println(f('+'))
-    //println(f('0'))
+    println(f(0))
+
     //我们定义一个将List集合里面数据+1的偏函数：
     val f1 = new PartialFunction[Any, Int] {
       def apply(any: Any) = any.asInstanceOf[Int] + 1
+
       def isDefinedAt(any: Any) = if (any.isInstanceOf[Int]) true else false
-    }
-    val rf1 = List(1, 3, 5, "seven") collect f1
+    } //collect use isDefinedAt first,then use apply
+    val rf1 = List(1, 3, 5, "7", "seven") collect f1
     println(rf1)
 
-    //如上的功能，等同于：
+    //----------------------------f2与f1功能一样的------------------------------
     def f2: PartialFunction[Any, Int] = {
       case i: Int => i + 1
-    }
-
-    val rf2 = List(1, 3, 5, "seven") collect f2
+    } //default isDefinedAt apply
+    val rf2 = List(1, 3, 5, "7", "seven") collect f2
     println(rf2)
+
+    //    println(List(1, 3, 5, "seven") map { case i: Int => i + 1 }) // won't work
+    // scala.MatchError: seven (of class java.lang.String)
+    println(List(1, 3, 5, "7", "seven") collect { case i: Int => i + 1 })
+    // verify If not=》java.lang.AssertionError: assertion failed
+    assert(List(2, 4, 6) == (List(1, 3, 5, "seven") collect { case i: Int => i + 1 }))
 
   }
 

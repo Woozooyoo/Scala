@@ -103,5 +103,15 @@ object Match_test {
       println(k)
     for ((k, v) <- System.getProperties.asScala if v == "")
       println(k)
+
+
+    //***7
+    val (x1, y1) = (1, 2)
+    println(x1,y1)
+    val (q1,r1)=BigInt(100)/% 3
+    println(q1 , r1)
+
+
+
   }
 }

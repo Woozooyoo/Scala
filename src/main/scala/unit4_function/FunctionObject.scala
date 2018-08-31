@@ -57,7 +57,7 @@ object FunctionObject {
       * 2、匿名函数的函数体，可以是一个包含多行代码的代码块
       * 3、函数的类型，为参数个数的类型
       */
-    val play7 = () => 0
+    val play7 = () => 0 //    ()=>0最省的匿名函数
     println(play7)  //<function0>
     println(play7())  //  0
 
