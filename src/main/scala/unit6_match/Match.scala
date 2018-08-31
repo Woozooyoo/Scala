@@ -17,17 +17,17 @@ object /*伴生类对象，不用构造器*/ Match {
 
     matchCase()
 
-    println("/************** 2、匹配模式——守卫 和3、模式中的变量 把变量c传给value*********************************/")
+    println("/************** 2、匹配模式——守卫  3、模式中的变量 把变量c传给value*********************************/")
     def matchGuard() = {
       for (c <- "+-*/123!") {
         c match {
           //将c传进 value变量
-          case value /*_*/ if Character.isDigit(c) => print("这是一个数字:" + value + " ")
-          case '+' => print("这次字符为+号 ")
-          case '-' => print("这次字符为-号 ")
-          case '*' => print("这次字符为*号 ")
-          case '/' => print("这次字符为/号 ")
-          case _ => print("这次字符为通配 ") //没有处理则出错
+          case value /*_*/ if Character.isDigit(c) => print("数字" + value + " ")
+          case '+' => print("+号 ")
+          case '-' => print("-号 ")
+          case '*' => print("*号 ")
+          case '/' => print("/号 ")
+          case _ => print("通配 ") //没有处理则出错
         }
       }
     }
@@ -37,27 +37,27 @@ object /*伴生类对象，不用构造器*/ Match {
 
     println("/************** 4、类型匹配 *********************************/")
     def matchClass() = {
-      val a = 4 //4 和5的结果都是 第一个匹配的Map,因为
-      val obj = if (a == 1) 1
-      else if (a == 2) "2"
-      else if (a == 3) BigInt(3)
-      else if (a == 4) Map("aa" -> 1)
-      else if (a == 5) Map(1 -> "aa")
-      else if (a == 6) Array(1, 2, 3) //数组有类型 Int[]
-      else if (a == 7) Array("aa", 1)
-      else if (a == 8) Array("aa")
+      for (arr <- Array(
+        1,
+        "2",
+        BigInt(3),
+        Map("aa" -> 1),
+        Map(1 -> "aa"),
+        Array(1, 2, 3),
+        Array("aa", 1),
+        Array("aa")) ) {
 
-      val r1 = obj match {
-        case i: Int => i
-        case s: String => s
-        case bi: BigInt => bi
-        case m2: Map[Int, String] => print("这是Map[Int, String] ")
-        case m1: Map[String, Int] => print("这是Map[String, Int] ")
-        case a1: Array[Int] => print("Array[Int] ")
-        case a3: Array[String] => print("Array[String] ")
-        case a2: Array[Any] => print("Array[Any] ")
+        arr match {
+          case i: Int => print("Int ")
+          case s: String => print("String ")
+          case bi: BigInt => print("BigInt ")
+          case m2: Map[Int, String] => print("Map[Int, String] ")
+          case m1: Map[String, Int] => print("Map[String, Int] ")
+          case a1: Array[Int] => print("Array[Int] ")
+          case a3: Array[String] => print("Array[String] ")
+          case a2: Array[Any] => print("Array[Any] ")
+        }
       }
-      println("\n" + r1 + "：" + r1.getClass.getName)
     }
 
     matchClass()
@@ -66,11 +66,11 @@ object /*伴生类对象，不用构造器*/ Match {
     def match5() = {
       for (arr <- Array(Array(0), Array(1, 0), Array(0, 1, 0), Array(1, 1, 0), Array(1, 1, 1, 0), Array(0, 0, 0, 0))) {
         arr match {
-          case Array(0) => print("匹配了Array(0) ")
-          case Array(x, y) => print("匹配了Array(x, y):" + x + "," + y + " ")
-          case Array(x, y, z) => print("匹配了Array(x, y, z):" + x + "," + y + "," + z + " ")
-          case Array(1, arr1@_* /*除了1剩下的为数组*/) => print("配了 Array(1, _*):" + arr1.length + " ")
-          case Array(0, _*) => print("匹配了 Array(0,_*):" + arr.length)
+          case Array(0) => print("Array(0) ")
+          case Array(x, y) => print("Array(x, y):" + x + "," + y + " ")
+          case Array(x, y, z) => print("Array(x, y, z):" + x + "," + y + "," + z + " ")
+          case Array(1, arr1@_* /*除了1剩下的为数组*/) => print("Array(1, _*):" + arr1.length + " ")
+          case Array(0, _*) => print("Array(0,_*):" + arr.length+ " ")
           case _ => print("通配 ")
         }
       }
@@ -78,7 +78,7 @@ object /*伴生类对象，不用构造器*/ Match {
 
       for (lst <- Array(List(0), List(1, 0), List(0, 0, 0), List(1, 0, 0))) {
         val result = lst match {
-          case 0 :: Nil => "0"
+          case 0 :: Nil => "List(0)"
           case x :: y :: Nil => x + "," + y
           case 0 :: aaa => "0..." + aaa
           case _ => "something else"
