@@ -1,5 +1,7 @@
 package unit8_class
 
+import unit8_class.society.professional.Executive
+
 object ClassSyllabus {
   def main(args: Array[String]): Unit = {
 
@@ -106,5 +108,62 @@ object ClassSyllabus {
     println(cacheBean)
     println(cacheBean.instance)
 
+    import scala.collection.mutable.ArrayBuffer
+
+    println("===================嵌套类===================")
+    class Network {
+      class Member(name: String){
+        //用于存放某个Mem对象的联系人
+        val contacts = new ArrayBuffer[Network#Member]()
+      }
+
+      //用于存放局域网中的用户
+      val members = new ArrayBuffer[Network#Member]()
+
+      def join(name:String) = {
+        val m = new Member(name)
+        members += m
+        m
+      }
+    }
+
+    //嵌套类
+    val network1 = new Network
+    val nick = network1.join("Nick")//network1.Member
+    val alice = network1.join("Alice")//network1.Member
+
+    nick.contacts += alice
+    alice.contacts += nick
+
+    val network2 = new Network
+    val jone = network2.join("Jone")//network2.Member
+
+    nick.contacts += jone
+
+
+    println("===================私有属性的访问范围===================")
+    new Executive().help(new Executive)
   }
+}
+
+package society {
+  package professional {
+
+    class Executive {
+      private[society] var friends = null
+      private[professional] var workDetails = null
+      private[Executive] var secrets = null
+      private[this] var th = null
+
+      def help(another: Executive) {
+        println(another.friends)
+        println(another.workDetails)
+        println(another.secrets)
+        println(this.th)
+      }
+    }
+
+
+  }
+
 }
