@@ -80,7 +80,7 @@ object HighOrderFunction {
     }*/
 
 
-    println("===============控制抽象")  //线程池
+    println("===============控制抽象")  //线程池应用
     def runOnThread(f1: () => Unit): Unit = {
       new Thread {
         override def run() = {
