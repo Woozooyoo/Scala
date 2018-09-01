@@ -1,4 +1,4 @@
-package unit6_match
+package unit06_match
 
 object /*伴生类对象，不用构造器*/ Match {
   def main(args: Array[String]): Unit = {

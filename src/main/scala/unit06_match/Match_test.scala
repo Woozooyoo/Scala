@@ -1,4 +1,4 @@
-package unit6_match
+package unit06_match
 
 object Match_test {
   def main(args: Array[String]): Unit = {
