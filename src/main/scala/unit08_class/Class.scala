@@ -1,6 +1,6 @@
-package unit8_class
+package unit08_class
 
-import unit8_class.society.professional.Executive
+import unit08_class.society.professional.Executive
 
 //构造器里的参数使用过，就升级为字段
 object ClassSyllabus {
