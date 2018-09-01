@@ -1,4 +1,4 @@
-package unit4_function
+package unit04_function
 
 object Iterable {
   def main(args: Array[String]): Unit = {

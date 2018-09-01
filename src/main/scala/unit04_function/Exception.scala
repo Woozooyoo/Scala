@@ -1,4 +1,4 @@
-package unit4_function
+package unit04_function
 
 object Exception {
   def divider(x: Int, y: Int): Float = {
