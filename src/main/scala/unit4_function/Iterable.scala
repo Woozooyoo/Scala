@@ -1,6 +1,6 @@
 package unit4_function
 
-object IterableSyllabus {
+object Iterable {
   def main(args: Array[String]): Unit = {
     val arr1 = new Array[Int](10)
     println(arr1 mkString (" "))

@@ -2,6 +2,7 @@ package unit8_class
 
 import unit8_class.society.professional.Executive
 
+//构造器里的参数使用过，就升级为字段
 object ClassSyllabus {
   def main(args: Array[String]): Unit = {
 
@@ -9,7 +10,7 @@ object ClassSyllabus {
     import scala.beans.BeanProperty
     class Dog { //class默认是public
       //@BeanProperty将scala的leg变量创造Java的Get和Set方法
-      @BeanProperty var leg: Int = _ //private var leg = 4
+      @BeanProperty var leg: Int = _ //_意思是没有初始值//private var leg = _
 
       def shout(msg: String) = {
         println(msg)
@@ -18,6 +19,7 @@ object ClassSyllabus {
     val dog = new Dog()
     dog.shout("wangwangwang~~")
     dog.setLeg(4)
+    println(dog.getLeg)
     dog leg_= 10 // leg_= 是一个方法  这是scala的set方法规范
     println(dog leg)
 
@@ -93,7 +95,7 @@ object ClassSyllabus {
     class CacheBean private() {
     }
 
-    object CacheBean {  //伴生类对象 在这里面都是静态的
+    object CacheBean { //伴生类对象 在这里面都是静态的
       var instance: CacheBean = _
 
       def apply(): CacheBean = {
@@ -112,33 +114,38 @@ object ClassSyllabus {
 
     println("===================嵌套类===================")
     class Network {
-      class Member(name: String){
+
+      class Member(name: String) {
         //用于存放某个Mem对象的联系人
-        val contacts = new ArrayBuffer[Network#Member]()
+        //val contacts = new ArrayBuffer[Member]()  //局域网外不能调用
+        //方法一
+        val contacts = new ArrayBuffer[Network#Member]()//外部类的投影类型#
+        //方法二 把Member类放到Network的Object对象中去，即静态内部类
       }
 
       //用于存放局域网中的用户
-      val members = new ArrayBuffer[Network#Member]()
+      //val members = new ArrayBuffer[Member]()
+      val members = new ArrayBuffer[Network#Member]()//类型投影 泛型是Network就行
 
-      def join(name:String) = {
+      def join(name: String) = {
         val m = new Member(name)
         members += m
         m
       }
     }
 
-    //嵌套类
     val network1 = new Network
-    val nick = network1.join("Nick")//network1.Member
-    val alice = network1.join("Alice")//network1.Member
+    val nick = network1.join("Nick")
+    //network1.Member
+    val alice = network1.join("Alice") //network1.Member
 
     nick.contacts += alice
     alice.contacts += nick
 
     val network2 = new Network
-    val jone = network2.join("Jone")//network2.Member
+    val jone = network2.join("Jone") //network2.Member
 
-    nick.contacts += jone
+    nick.contacts += jone//new ArrayBuffer[Member]()时出错
 
 
     println("===================私有属性的访问范围===================")
@@ -159,6 +166,7 @@ package society {
         println(another.friends)
         println(another.workDetails)
         println(another.secrets)
+        //println(another.th)//会报错 只能本对象this调用th，another不能调用
         println(this.th)
       }
     }

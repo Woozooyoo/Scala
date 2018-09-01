@@ -5,7 +5,6 @@ object HighOrderFunction {
 
     //作为参数的函数
     def plus(x: Int) = 3 + x
-
     val result1 = Array(1, 2, 3, 4).map(plus)
     println(result1.mkString(","))
 

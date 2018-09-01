@@ -1,6 +1,6 @@
 package unit4_function
 
-object ExceptionSyllabus {
+object Exception {
   def divider(x: Int, y: Int): Float = {
     if (y == 0) throw new Exception("0作为了除数")
     else x / y

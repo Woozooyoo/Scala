@@ -10,7 +10,7 @@ import scala.collection.mutable.{ArrayBuffer, ListBuffer}
   * 3追加
   * 4（遍历）
   */
-object CollectionSyllabus {
+object Collection {
   def main(args: Array[String]): Unit = {
     /** ************ 1、定长数组Array *********************************/
     val arr1 = new Array[Int](10)

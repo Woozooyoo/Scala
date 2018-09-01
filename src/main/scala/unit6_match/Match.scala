@@ -2,7 +2,7 @@ package unit6_match
 
 object /*伴生类对象，不用构造器*/ Match {
   def main(args: Array[String]): Unit = {
-    println("/************** 1、match 中的 switch用法 *********************************/")
+    println("/************** 1、match 中的 case '?'=> *********************************/")
     def matchCase() = {
       var result = 0
       val c: Char = '*'
@@ -35,7 +35,7 @@ object /*伴生类对象，不用构造器*/ Match {
     matchGuard()
     println()
 
-    println("/************** 4、类型匹配 *********************************/")
+    println("/************** 4、类型匹配 case i:类型 => *********************************/")
     def matchClass() = {
       for (arr <- Array(
         1,
@@ -62,8 +62,8 @@ object /*伴生类对象，不用构造器*/ Match {
 
     matchClass()
 
-    println("/************** 5、匹配数组、列表、元组 *********************************/")
     def match5() = {
+      println("/************** 5、匹配数组 *********************************/")
       for (arr <- Array(Array(0), Array(1, 0), Array(0, 1, 0), Array(1, 1, 0), Array(1, 1, 1, 0), Array(0, 0, 0, 0))) {
         arr match {
           case Array(0) => print("Array(0) ")
@@ -76,6 +76,7 @@ object /*伴生类对象，不用构造器*/ Match {
       }
       println()
 
+      println("/************** 5、匹配列表 *********************************/")
       for (lst <- Array(List(0), List(1, 0), List(0, 0, 0), List(1, 0, 0))) {
         val result = lst match {
           case 0 :: Nil => "List(0)"
@@ -87,6 +88,7 @@ object /*伴生类对象，不用构造器*/ Match {
       }
       println()
 
+      println("/************** 5、匹配元组 *********************************/")
       for (pair <- Array((0, 1), (1, 0), (1, 1), (0, 0, 0))) {
         val result = pair match {
           case (0, _) => "0,_"
@@ -102,7 +104,7 @@ object /*伴生类对象，不用构造器*/ Match {
     match5()
     println()
 
-    println("/************** 6、匹配模式中的提取机制 *********************************/")
+    println("/************** 6、匹配模式中的提取机制 unapply *********************************/")
     object Square {
       def unapply(z: Double): Option[Double] = Some(math.sqrt(z))
     }
