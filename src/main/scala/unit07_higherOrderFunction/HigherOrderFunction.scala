@@ -1,6 +1,6 @@
-package unit7_highOrderFunction
+package unit07_higherOrderFunction
 
-object HighOrderFunction {
+object HigherOrderFunction {
   def main(args: Array[String]): Unit = {
 
     //作为参数的函数
