@@ -12,7 +12,6 @@ object Extends {
       override /*重写非抽象方法必须要有，不是可以没有*/ def walk: Unit = {}
       override def toString = "Age：" + age + ",hairColor：" + hairColor + "," + age
     }
-
     val dog = new Dog(22, "黑色")
     println(dog)
 
@@ -24,13 +23,21 @@ object Extends {
       override def toString = "我的学校是：" + school + ",我的名字和年龄是：" + name + "," + age
     }
 
-
     class PersonSon(name:String, age:Int) extends PersonFather(name, age){
       override val school: String = "清华大学"
     }
-
     val person = new PersonSon("nick", 20)
     println(person)
+
+    println("===================匿名子类===================")
+    class Person4(val name: String) {
+      override def toString = getClass.getName + "[name=" + name + "]"
+    }
+    val alien = new Person4("Fred") {
+      def greeting = "Greetings, Earthling! My name is Fred."
+    }
+    println(alien.greeting)
+    println(alien)
 
     println("===================抽象类===================")
     abstract class Father(age: Int) {
