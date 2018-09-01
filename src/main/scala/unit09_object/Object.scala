@@ -1,4 +1,4 @@
-package unit9_object
+package unit09_object
 
 object Object extends App {
   println("===================单例对象===================")
