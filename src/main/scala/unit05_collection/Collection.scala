@@ -12,7 +12,7 @@ import scala.collection.mutable.{ArrayBuffer, ListBuffer}
   */
 object Collection {
   def main(args: Array[String]): Unit = {
-    /** ************ 1、定长数组Array *********************************/
+    println("============== 1、定长数组Array =================================/")
     val arr1 = new Array[Int](10)
     println(arr1 mkString " ") //0 0 0 0 0 0 0 0 0 0
 
@@ -28,7 +28,7 @@ object Collection {
     println((arr2 :+ "???") mkString " ") //??? 1 10 3
     println(("???" +: arr2) mkString " ") //??? 1 10 3
 
-    //2 变长数组ArrayBuffer
+    println("==============  变长数组ArrayBuffer =================================/")
     //小括号可以存放初始化的元素内容
     val arrBuffer1 = ArrayBuffer[Int](10, 9, 8)
     println(arrBuffer1) //ArrayBuffer(10, 9, 8)
@@ -45,7 +45,7 @@ object Collection {
     println(arrBuffer1 :+ 99) //ArrayBuffer(10, -1, 8, 1, 2, 3, 99)
     println(99 +: arrBuffer1) //ArrayBuffer(10, -1, 8, 1, 2, 3, 99)
 
-    /** ************ 定义多维数组 *********************************/
+    println("============== 定义多维数组 =================================/")
     val arr4 = Array.ofDim[Int](3, 4) //一定要有泛型
     arr4(1)(2) = 1
     for (x <- arr4) {
@@ -58,9 +58,8 @@ object Collection {
     for (x <- arr5) {
       println(x mkString " ")
     }
-    println("======================上面是//1、数组======================")
 
-    /** ************ 2 scala和java的互相转换定 *********************************/
+    println("============== 2 scala和java的互相转换定 =================================/")
     val arr6 = ArrayBuffer("1", "2", "3") //转换的一定元素是String
     //scala to Java
     import scala.collection.JavaConversions._
@@ -72,9 +71,8 @@ object Collection {
     //java to scala
     val scalaArr: mutable.Buffer[String] = javaArr.command()
     println(scalaArr) //ArrayBuffer(1, 2, 3, 10)
-    println("======================上面是//2、sca和java互转======================")
 
-    /** ************ 3 元组 *********************************/
+    println("============== 3 元组 =================================/")
     //创建
     val tuple1 = (1, 2, 3.0F, "heiheihei", 4)
     //特殊的 取值
@@ -88,9 +86,8 @@ object Collection {
     tuple1.productIterator.foreach(print)
     println()
     tuple1.productIterator.foreach(i => print("tuple1中的元素：" + i + " "))
-    println("\n======================上面是//3、元祖======================")
 
-    /** ************ 4、List 定长 *********************************/
+    println("\n============== 4、List 定长 =================================/")
     val list1 = List(1, 2)
     //取值
     println("list1(1): " + list1(1))
@@ -107,7 +104,7 @@ object Collection {
     val list2_3 = 1 :: 2 :: 3 :: List(6, 7)
     println("list2_3: " + list2_3)
 
-    //变长 ListBuffer
+    println("============== 变长 ListBuffer =================================/")
     val listBuffer = ListBuffer[Int](3, 0)
     //append追加在原有的ListBuffer里追加，不形成新的集合
     listBuffer append(1, 2)
@@ -117,9 +114,8 @@ object Collection {
     //ListBuffer update 和List 的updated不同
     listBuffer update(0, 10)
     println(listBuffer)
-    println("======================上面是//4、List======================")
 
-    /** ************ 5、队列 *********************************/
+    println("============== 5、队列 =================================/")
     val q1 = scala.collection.mutable.Queue[Int](1, 2)
     println(q1)
     //赋值
@@ -146,9 +142,8 @@ object Collection {
     println(q1 head)
     println(q1 last)
     println(q1 tail) //the queue except the first one    expect
-    println("======================上面是//5、队列======================")
 
-    /** ************ 6、Map key 和value的类型都无所谓 *********************************/
+    println("============== 6、Map key 和value的类型都无所谓 =================================/")
     val map1 = Map("Alice" -> 22, "Bob" -> 21, "Kotlin" -> 20)
     println(map1)
     //取值
@@ -177,9 +172,8 @@ object Collection {
     for ((k, v) <- mutableMap) {
       print(k + ":" + v + ", ")
     }
-    println("\n======================上面是6、Map======================")
 
-    /** ************ 7、Set *********************************/
+    println("\n============== 7、Set =================================/")
     val set1 = Set(1, 2, 2, 3) //去重
     println(set1)
     val mutableSet = mutable.Set(1, 2, 2, 3, "3") //会出现3和"3"
@@ -200,9 +194,8 @@ object Collection {
     //遍历
     for (s <- mutableSet)
       print(s + " ")
-    println("\n======================上面是7、Set======================")
 
-    /** ************ 8、List集合中元素与函数之间的映射 *********************************/
+    println("\n============== 8、List集合中元素与函数之间的映射 =================================/")
     val listOri = List("Alice", "Bob", "Kotlin")
 
     //map的作用是对集合中的每个元素 映射 一个方法
@@ -225,9 +218,9 @@ object Collection {
     println(listOri flatMap (x => x.toUpperCase() + x.toLowerCase()))
 
     println(listOri.flatMap(_.toUpperCase())) //List(A, L, I, C, E, B, O, B, K, O, T, L, I, N)
-    println("======================上面是8、集合元素 与函数映射======================")
 
-    /************** 9 化简 折叠 扫描 *********************************/
+    println("============== 9 化简 折叠 扫描 =================================/")
+    println("======================reduce方法，就是传0初始值的fold方法======================")
     //Reduce
     val listReduced = List(1, 2, 3)
     //1-2) -3)
@@ -236,8 +229,8 @@ object Collection {
     //(1- (2-3
     println(listReduced.reduceRight(_ - _))
     println(listReduced.reduceRight((r, x) => r - x))
-    println("======================上面是reduce方法，就是传0初始值的fold方法======================")
 
+    println("======================fold方法======================")
     //Fold
     val listFolded = List(1, 2, 3)
     //fold=foldLeft   5 是初始值  foldLeft就是以一个初始值5 为最左边的数
@@ -261,14 +254,14 @@ object Collection {
     //((m是上一步的结果Map(), c是下一个元素"一") => m是Map() + 映射关系(c "一" -> (m.getOrElse(c, 0)有就得到次数，else没有就默认给(c,0)的映射 + 1)))
     val mapCount = (Map[Char, Int]() /: sentence) ((m, c) => m + (c -> (m.getOrElse(c, 0) + 1)))
     println(mapCount)
-    println("======================上面是fold方法======================")
 
+    println("======================scan方法======================")
     //    这个理解需要结合上面的知识点，扫描，即对某个集合的所有元素做fold操作，但是会把产生的所有中间结果放置于一个集合中保存。
     println(listReduced.scanLeft(0)(_ + _))
     println(listReduced.scan(5)(_ - _)) //List(5, 4, 2, -1)
     println(listReduced.scanRight(5)(_ - _)) //List(-3, 4, -2, 5)
-    println("======================上面是scan方法======================")
 
+    println("======================Curry化======================")
     //Curry //调用第一个匿名函数，它的变量是第二个匿名函数
     val myFunction = (x: Int) => (y: Int) => x - y
     println(myFunction(10))
@@ -278,10 +271,9 @@ object Collection {
     def myFunctionCurry(x: Double)(y: Double) = x / y
 
     println(myFunctionCurry(10)(20))
-    println("======================上面是Curry化======================")
 
 
-    /** ************ 10、拉链 *********************************/
+    println("============== 10、拉链 就是融合两个List的方法=================================/")
     val phoneList = List("15837312345", "137373123456")
     val nameList = List("孙悟空", "猪八戒", "沙和尚")
     val zlist1 = phoneList /*在左*/ zip nameList
@@ -294,9 +286,8 @@ object Collection {
       namePhoneMap += e
     }
     println(namePhoneMap) //Map(15837312345 -> 孙悟空, 137373123456 -> 猪八戒)
-    println("======================上面是10拉链方法，就是融合两个List的方法======================")
 
-    /** ************ 12、stream 用到多大的区间，就会动态的生产，使用后才缓存 末尾元素遵循lazy规则。 *********************************/
+    println("============== 12、stream 用到多大的区间，就会动态的生产，使用后才缓存 末尾元素遵循lazy规则。 =================================/")
     def recursiveStream(n: Int): Stream[Int] = {
       n #:: recursiveStream(n + 1)
     }
@@ -337,8 +328,6 @@ object Collection {
     println(stream) //Stream(AlvaroSoler, Sofia, Sofia, Sofia, ?)
     println(stream.tail) //Stream(Sofia, Sofia, Sofia, ?)
     println(stream.tail.tail) //Stream(Sofia, Sofia, ?)
-
-    println("======================上面是12 Stream方法，就是从初始状态开始tail更新并排除第一个======================")
 
     //13、view 使用完后不缓存 只保留函数 每次调用时才加载
     //    val view = (1L to 10000000L).view.map(x => x).filter(x => x.toString.reverse == x.toString)
