@@ -112,7 +112,26 @@ object ClassSyllabus {
 
     import scala.collection.mutable.ArrayBuffer
 
-    println("===================嵌套类===================")
+    println("===================嵌套类 类型投影===================")
+    object Other {
+      def main(args: Array[String]): Unit = { //成员内部类 通过 外部类的实例化对象outter new 内部类构造器
+        val inner = new Outter#Inner
+        //静态内部类 通过 new 外部类类名.内部类构造器
+        val inner2 = new Outter.Inner2
+      }
+    }
+
+    object Outter {
+
+      class Inner2 {}
+
+    }
+    class Outter {
+
+      class Inner {}
+
+    }
+
     class Network {
 
       class Member(name: String) {
