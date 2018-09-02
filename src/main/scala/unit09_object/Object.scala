@@ -4,7 +4,7 @@ object Object extends App {
   println("===================单例对象===================")
 
   object Dog {
-    println("已初始化...")
+    println("object Dog已初始化...")
     private var leg = 0
 
     def plus() = {
@@ -19,12 +19,14 @@ object Object extends App {
   println("===================单例对象2===================")
 
   class SingletonObject private /*单例的重点*/ (val sex: String, name: String) {
+    println("class SingletonObject private已初始化...")
     def describe = {
       println("Sex:" + sex + " Name:" + name)
     }
   }
 
   object SingletonObject {
+    println("object SingletonObject 已初始化...")
     var instance: SingletonObject = null
 
     def apply(name: String) = {
@@ -48,11 +50,11 @@ object Object extends App {
   }
 
   println(TrafficColorLighting.RED + ","
-    + TrafficColorLighting.RED.id)
+        + TrafficColorLighting.RED.id)
   println(TrafficColorLighting.YELLOW + ","
-    + TrafficColorLighting.YELLOW.id)
+        + TrafficColorLighting.YELLOW.id)
   println(TrafficColorLighting.GREEN + ","
-    + TrafficColorLighting.GREEN.id)
+        + TrafficColorLighting.GREEN.id)
 
 
 }
