@@ -17,7 +17,7 @@ object AdvancedTypes {
     //unit17_AdvancedTypes.AdvancedTypes.A
     println(classOf[A]) //res3: Class[A] = class A
 
-    println("=============5  类型别名===============")
+    println("=============5  Type Aliases类型别名===============")
     class Document {
       def play(x: Index): Unit = println(x)
     }
@@ -35,7 +35,7 @@ object AdvancedTypes {
     ind += ("As time went by" -> (903, 903))
     d.play(ind)
 
-    println("=============6  结构类型===============")
+    println("=============6  Structural Types结构类型===============")
     // 结构类型是指一组关于抽象方法、字段和类型的规格说明，
     // 你可以对任何具备play方法的类的实例调用play方法，
     // 这种方式比定义特质更加灵活，是通过反射进行调用的：
@@ -64,14 +64,14 @@ object AdvancedTypes {
     init(new Structure) //Structure有play 方法
     //总结：结构类型，简单来说，就是只要是传入的类型，符合之前定义的结构的，都可以调用。
 
-    println("=============8  中置类型===============")
+    println("=============8  Infix Types中置类型===============")
     //中置类型是一个带有两个类型参数的类型，以中置语法表示，
     //比如可以将Map[String, Int]表示为：
     //String Map Int
     val scores: String Map Int = Map("Fred" -> 42)
     println(scores)
 
-    println("=============9  自身类型===============")
+    println("=============9    Self Types自身类型===============")
     //self => 这句相当于给this起了一个别名为self：
     class B {
       self => //this别名
