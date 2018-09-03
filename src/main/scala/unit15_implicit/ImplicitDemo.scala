@@ -5,7 +5,7 @@ import scala.io.Source
 
 object ImplicitDemo1 {
   def main(args: Array[String]): Unit = {
-    println("=============1  隐式转换函数 implicit def===============")
+    println("=============1  Implicit Conversions 隐式转换函数 implicit def===============")
 
     //隐式转换函数是以implicit关键字声明的带有单个参数的函数。
     //这种函数将会自动应用，将值从一种类型转换为另一种类型。
@@ -14,7 +14,7 @@ object ImplicitDemo1 {
     val i1: Int = 3.5 //不加上面的implicit就报错
     println(i1) // 3
 
-    println("=============2  利用隐式转换丰富类库功能 implicit def===============")
+    println("=============2  Using Implicits for Enriching Existing Classes利用隐式转换丰富类库功能 ===============")
     //如果需要为一个类增加一个方法，可以通过隐式转换来实现。比如想为File增加一个read方法，可以如下定义：
     class RichFile(val from: File) {
       def read = Source.fromFile(from.getPath).mkString
