@@ -2,6 +2,7 @@ package unit12_traits
 
 object Trait {
   def main(args: Array[String]): Unit = {
+    /**特质 构造器中  不能有参数*/
 
     trait Logger {
       def log(msg: String): Unit
