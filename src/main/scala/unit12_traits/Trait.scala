@@ -9,7 +9,7 @@ object Trait {
 
     //    val logger = new ConsoleLogger
     //    logger.log("hello")
-    println("=============3 带有具体实现的特质===============")
+    println("=============3 Traits with Concrete Implementations带有具体实现的特质===============")
     trait ConsoleLogger {
       def log(msg: String) {
         println(msg)
@@ -31,7 +31,7 @@ object Trait {
     val drawAccount = new DrawAccount1
     drawAccount.withdraw(10)
 
-    println("=============4 带有特质的对象，动态混入===============")
+    println("=============4 Objects with Traits带有特质的对象，动态混入===============")
     trait Logger2 {
       def log(msg: String)
     }
@@ -64,7 +64,7 @@ object Trait {
       * 4、如果左边没有特质了，则调用父特质中的方法
       */
 
-    println("=============5叠加在一起的特质 的动态混入===============")
+    println("=============5 Layered Traits叠加在一起的特质 的动态混入===============")
     trait Logger3 {
       def log(msg: String);
     }
@@ -112,7 +112,7 @@ object Trait {
     acct2.withdraw(100)
 
 
-    println("=============6 在特质中重写抽象方法===============")
+    println("=============6 Overriding Abstract Methods in Traits在特质中重写抽象方法===============")
     trait Logger6 {
       def log(msg: String)
     }
@@ -152,7 +152,7 @@ object Trait {
     val acct6 = new SavingsAccount6 with ConsoleLogger6 with TimestampLogger6 with ShortLogger6
     acct6.withdraw(100)
 
-    println("=============7  当做富接口使用的特质===============")
+    println("=============7  Traits for Rich Interfaces当做富接口使用的特质===============")
     //富特质 即该特质中既有抽象方法，又有非抽象方法
     trait Logger7 {
       def log(msg: String) //抽象
@@ -192,7 +192,7 @@ object Trait {
     val acct7 = new DrawAccount7 with ConsoleLogger7
     acct7.withdraw(100)
 
-    println("=============8 特质中的具体字段===============")
+    println("=============8 Concrete Fields in Traits特质中的具体字段===============")
     //特质中可以定义具体字段，如果初始化了就是具体字段，如果不初始化就是抽象字段。
     //混入该特质的类就具有了该字段，字段不是继承，而是简单的加入类。是自己的字段。
     trait Logger8 {
@@ -228,7 +228,7 @@ object Trait {
     println(acct8.maxLength) //混入会把此字段带入类中
 
 
-    println("=============9  特质中的抽象字段===============")
+    println("=============9  Abstract Fields in Traits特质中的抽象字段===============")
     //特质中未被初始化的字段在具体的子类中必须被重写。
     //特质中的具体字段
     trait Logger9 {
@@ -266,7 +266,7 @@ object Trait {
     acct9.withdraw(100)
     println(acct9.maxLength)
 
-    println("=============10  特质构造顺序===============")
+    println("=============10  Trait Construction Order特质构造顺序===============")
     //特质也是有构造器的，构造器中的内容由“字段的初始化”和一些其他语句构成
     trait Logger10 {
       println("我在Logger10特质构造器中，嘿嘿嘿。。。")
@@ -319,7 +319,7 @@ object Trait {
       * 6、当前类构造器  SavingsAccount10 */
 
 
-    println("=============11  初始化特质中的字段===============")
+    println("=============11  Initializing Trait Fields初始化特质中的字段===============")
     trait Logger11 {
       def log(msg: String)
     }
@@ -377,7 +377,7 @@ object Trait {
     }
     acct11_3.log("哈哈哈")
 
-    println("=============12 类继承时 不能同时继承两个父类不同的类 扩展类的特质===============")
+    println("=============12 Traits Extending Classes 类继承时 不能同时继承两个父类不同的类 扩展类的特质===============")
     /*总结：
     1、特质可以继承自类，以用来拓展该类的一些功能
     2、所有混入该特质的类，会自动成为那个特质所继承的超类的子类
