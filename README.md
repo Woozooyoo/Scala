@@ -61,7 +61,7 @@ Scala
     Control Abstractions 
     The return Expression
     
-8   Classes
+8   Classes       (Core)
 
     Simple Classes and Parameterless Methods
     Properties with Getters and Setters 
@@ -157,7 +157,7 @@ Scala
     9.10 Regular Expressions — page 116
     9.11 Regular Expression Groups
     
-17  Advanced Types      (Core reflect)
+17  Advanced Types      (reflect)
 
     19.1 Singleton Types — page 280
     19.2 Type Projections — page 281
