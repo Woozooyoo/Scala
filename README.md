@@ -1,15 +1,15 @@
-Emphasis
+**Emphasis**
 Scala
 
-3 Basic     
+3   Basic     
 
     变量定义和声明，方法和函数调用
     
-4 Control Structures and Functions  
+4   Control Structures and Functions  
 
     if else有返回值，几种for循环
     
-5 Data Structure    
+5   Data Structure    
     
     Array 
     ArrayBuffer 
@@ -47,3 +47,7 @@ Scala
     Sealed Classes
     Simulating Enumerations
     Partial Functions
+    
+7   Higher-Order Functions
+
+    
