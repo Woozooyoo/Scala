@@ -3,17 +3,22 @@ package unit07_higherOrderFunction
 object HigherOrderFunction {
   def main(args: Array[String]): Unit = {
 
+    println("============1  Functions as Values")
     //作为参数的函数
     def plus(x: Int) = 3 + x
     val result1 = Array(1, 2, 3, 4).map(plus)
     println(result1.mkString(","))
 
-    //1)  高阶函数的使用1
+    println("============2  Anonymous Functions")
+    val triple = (x: Double) => 3 * x
+    println(triple(3))
+
+    println("============3  Functions with Function Parameters")
     def highOrderFunction1(f: Double => Double) = f(10)
     def minus7(x: Double) = x - 7
     val result2 = highOrderFunction1(minus7)
     println(result2)
-    //4  参数（类型）推断
+    println("============4  Parameter Inference")
     // 传入函数表达式
     println(highOrderFunction1((x: Double) => 3 * x))
     // 参数推断省去类型信息 单个参数可以省去括号
@@ -24,7 +29,7 @@ object HigherOrderFunction {
     println(List(1, 2, 3, 4).map((x: Int) => x + 1))
     println(List(1, 2, 3, 4).map(x => x + 1)) //x是匿名函数的参数
 
-    //  高阶函数的使用2
+    println("============3  Useful Higher-Order Functions")
     def play(x: String, y: Int, f: (String, Int) => String) = f(x, y)
     def f(x: String, y: Int): String = x + y
     val h1 = play("Hello", 10, f)
@@ -32,7 +37,7 @@ object HigherOrderFunction {
 
 
     //2)  高阶函数同样可以返回函数类型
-    println("============5  闭包")
+    println("============5  Closures")
     def minusxy(x: Int) = /*这后面是一个单独函数，为什么能访问x*/(y: Int) => x - y
     println(minusxy(10)(20))
 
@@ -45,7 +50,7 @@ object HigherOrderFunction {
     println(f1(20 /*y*/))
     //    此处f1函数就叫闭包。
 
-    println("==========Curry应用")
+    println("==========6 Curry应用")
     //函数编程中，接受多个参数的函数都可以转化为接受单个参数的函数，
     // 这个转化过程就叫柯里化，柯里化就是证明了函数只需要一个参数而已。
     // 其实我们刚才的学习过程中，已经涉及到了柯里化操作，
@@ -79,7 +84,7 @@ object HigherOrderFunction {
     }*/
 
 
-    println("===============控制抽象")  //线程池应用
+    println("===============7 Control Abstractions ")  //线程池应用
     def runOnThread(f1: () => Unit): Unit = {
       new Thread {
         override def run() = {
