@@ -22,7 +22,7 @@ object TypeParameters {
     println(p2.replaceFirst("Joke"))
     println(p2)
 
-    println("=============5视图界定 T隐式转换成右边 [T <% Comparable[T]]===============")
+    println("=============5 View Bounds视图界定 T隐式转换成右边 [T <% Comparable[T]]===============")
     //由于Scala的Int类型没有实现Comparable接口，
     // 所以我们需要将Int类型隐式的转换为RichInt类型，比如：
     class Pair5[T](val first: T, val second: T)(implicit comp: T => Comparable[T]) {
@@ -36,7 +36,7 @@ object TypeParameters {
     val p5 = new Pair5(4, 2)
     println(p5.smaller)
 
-    println("=============6  上下文界定 [T <% Comparable[T]]===============")
+    println("=============6  Context Bounds 上下文界定 [T <% Comparable[T]]===============")
     /*视图界定 T <% V要求必须存在一个从T到V的隐式转换。
     上下文界定的形式为T:M，其中M是另一个泛型类，
     它要求必须存在一个类型为M[T]的隐式值。
