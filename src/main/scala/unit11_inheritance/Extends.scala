@@ -3,33 +3,52 @@ package unit11_inheritance
 object Extends {
   def main(args: Array[String]): Unit = {
 
-    println("===================重写方法===================")
+    println("===================Overriding Methods===================")
     class Animal(age: Int, hairColor: String) {
       def walk = {}
     }
 
     class Dog(age: Int, hairColor: String) extends Animal(age, hairColor) {
       override /*重写非抽象方法必须要有，不是抽象可以没有*/ def walk: Unit = {}
+
       override def toString = "Age：" + age + ",hairColor：" + hairColor + "," + age
     }
     val dog = new Dog(22, "黑色")
     println(dog)
 
-    println("===================覆写字段===================")
+
+    println("===================Type Checks and Casts===================")
+    println(classOf[String]) //1)  classOf[String]就如同Java的 String.class
+    println("Hello".isInstanceOf[String]) //2)  obj.isInstanceOf[T]就如同Java的obj instanceof T
+    println("Hello".asInstanceOf[String]) //3)  obj.asInstanceOf[T]就如同Java的(T)obj
+
+    println("===================Superclass Construction===================")
+    class Person(val name: String, val age: Int) {
+      override def toString = getClass.getName + "[name=" + name +
+        ",age=" + age + "]"
+    }
+    class Employee(name: String, age: Int, val salary: Double) extends Person(name, age) {
+      override def toString = super.toString + "[salary=" + salary + "]"
+    }
+
+
+    println("=================== Overriding Fields ===================")
     class PersonFather(val name: String, var age: Int) {
       println("主构造器已经被调用")
       val school = "五道口职业技术学院"
+
       def sleep = "8 hours"
+
       override def toString = "我的学校是：" + school + ",我的名字和年龄是：" + name + "," + age
     }
 
-    class PersonSon(name:String, age:Int) extends PersonFather(name, age){
+    class PersonSon(name: String, age: Int) extends PersonFather(name, age) {
       override val school: String = "清华大学"
     }
     val person = new PersonSon("nick", 20)
     println(person)
 
-    println("===================匿名子类===================")
+    println("===================匿名子类Anonymous Subclasses===================")
     class Person4(val name: String) {
       override def toString = getClass.getName + "[name=" + name + "]"
     }
@@ -39,15 +58,16 @@ object Extends {
     println(alien.greeting)
     println(alien)
 
-    println("===================抽象类===================")
+    println("===================Abstract Classes===================")
     //抽象类唯一的意义是被继承 接口是行为和常量的封装，类是行为和属性的封装，抽象类是未实现和已实现的封装
     abstract class Father(age: Int) {
-      val id:Int
+      val id: Int
       val name: String
-      def play:Unit
+
+      def play: Unit
     }
 
-    class Child(age: Int) extends Father(age){
+    class Child(age: Int) extends Father(age) {
       override val id: Int = 1
       override val name: String = "Nick"
 
@@ -59,7 +79,7 @@ object Extends {
     val child = new Child(20)
     child.play
 
-    println("===================构造顺序，提前定义===================")
+    println("===================Construction Order and Early Definitions构造顺序，提前定义===================")
     class Creature {
       val range: Int = 10
       val env: Array[Int] = new Array[Int](range) //可以lazy
@@ -70,8 +90,8 @@ object Extends {
     }
 
     class Ant2 extends {
-      override val range = 20   //代码块内的提前实例化
-    } with Creature   //提前定义语法，在超类的构造器执行之前初始化子类的val字段
+      override val range = 20 //代码块内的提前实例化
+    } with Creature //提前定义语法，在超类的构造器执行之前初始化子类的val字段
 
     val ant = new Ant
     println(ant.range)
