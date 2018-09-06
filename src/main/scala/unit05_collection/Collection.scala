@@ -20,6 +20,7 @@ object Collection {
     println(arr2 mkString " ") //1 2 3
     //取值
     println(arr2(1)) //2
+    println(arr2.sum) //6
     //赋值  定长数组里面的值可改变
     arr2(1) = 10 //arr2 update(1,10)
     println(arr2 mkString " ") //1 10 3
