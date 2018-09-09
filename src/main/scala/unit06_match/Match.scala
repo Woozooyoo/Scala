@@ -182,7 +182,7 @@ object /*伴生类对象，不用构造器*/ Match {
     case class Currency(value: Double, unit: String) extends Amount
     case object Nothing /*伴生类对象，不用构造器*/ extends Amount
 
-    def matchSampleClass() = {
+    def matchCaseClass() = {
       for (e <- Array(Dollar(1000.0), Currency(1000.0, "EUR"), Nothing)) {
         val result = e match {
           case Dollar(v) => "$" + v
@@ -193,7 +193,7 @@ object /*伴生类对象，不用构造器*/ Match {
       }
     }
 
-    matchSampleClass()
+    matchCaseClass()
 
     println("/************** 10 Copy Method and Named Parameters *********************************/")
     val amt = Currency(29.95, "EUR")
