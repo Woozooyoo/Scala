@@ -1,6 +1,8 @@
 package unit15_implicit
 
 import java.io.File
+import java.util.Date
+
 import scala.io.Source
 
 object ImplicitDemo1 {
@@ -51,17 +53,18 @@ object ImplicitDemo1 {
 
     foo(10)
 
+
     //2)  隐式转换调用类中本不存在的方法
-    /**class Dog {  val name = "金毛"}
+    class Dog {
+      val name = "金毛"
+    }
 
     class Skill {
       def fly(animal: Dog, skill: String) = println(animal.name + "已领悟" + skill)
     }
 
-    object Learn {
-      implicit def learningType(s: Dog) = new Skill
-    }*/
-    import unit15_implicit.Learn._
+    implicit def learningType(s: Dog) = new Skill
+
     val dog = new Dog
     dog.fly(dog, "飞行技能")
     //当然了，以上操作也可以定义在包对象中，即，在object Learn的外面再套一层，package，没问题的！
@@ -73,14 +76,22 @@ object ImplicitDemo1 {
     -- 隐式类不能是case class （ case class在定义会自动生成伴生对象与2矛盾 ）
     -- 作用域内不能有与之相同名称的标示符*/
 
-    import unit15_implicit.StringUtils._
-    println("abcd".increment)
+    implicit class StringImprovement(val s: String) { //隐式类
+      def increment = s.map(x => (x + 1).toChar)
+    }
+    println("abcd".increment)//bcde
 
-  }
-}
 
-object StringUtils {
-  implicit class StringImprovement(val s: String) { //隐式类
-    def increment = s.map(x => (x + 1).toChar)
+    //7	练习
+    var date = new Date()
+    implicit class date2RichDate(val date: Date) { //隐式类
+      //def +(i: Int) = new Date(date.getTime+i*1000)//加一秒
+      def +(i: Int) = new Date(date.getTime + i * 1000 * 3600 * 24)
+    }
+
+    date = date + 1 // 默认是报错的，请通过隐式转换实现为：给当前日期加1秒的效果
+    println(date.toString)
+
+
   }
 }
