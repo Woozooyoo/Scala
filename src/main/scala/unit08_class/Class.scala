@@ -6,7 +6,7 @@ import unit08_class.society.professional.Executive
 object ClassSyllabus {
   def main(args: Array[String]): Unit = {
 
-    println("===================简单类===================")
+    println("===================Simple Classes简单类===================")
     import scala.beans.BeanProperty
     class Dog { //class默认是public
       //@BeanProperty将scala的leg变量创造Java的Get和Set方法
@@ -24,14 +24,14 @@ object ClassSyllabus {
     println(dog leg)
 
 
-    println("===================构造器===================")
+    println("===================Primary Constructor 构造器===================")
     //    1)  主构造的参数直接放置于类名之后
     class ClassConstructor(name: String, age: Int) {
       println("语句1")
       println(name, age)
 
       //      name age upgrade 字段
-      def myPrintln = println(name + "," + age)
+      def myPrintln = println("myPrintln: " + name + "," + age)
 
       println("语句2")
     }
@@ -48,7 +48,7 @@ object ClassSyllabus {
     println(cc2.name)
     //    println(cc2.price)  //error
 
-    println("===================辅助构造器===================")
+    println("===================Auxiliary Constructors 辅助构造器===================")
     //主构造器中的是必须要实例化的 主构造器中是实例化必须需要的东西
     class ClassConstructorAuxiliary(name: String, age: Int) {
       def this() {
@@ -120,13 +120,13 @@ object ClassSyllabus {
         //用于存放某个Mem对象的联系人
         //val contacts = new ArrayBuffer[Member]()  //局域网外不能调用
         //方法一
-        val contacts = new ArrayBuffer[Network#Member]()//外部类的投影类型#
+        val contacts = new ArrayBuffer[Network#Member]() //外部类的投影类型#
         //方法二 把Member类放到Network的Object对象中去，即静态内部类
       }
 
       //用于存放局域网中的用户
       //val members = new ArrayBuffer[Member]()
-      val members = new ArrayBuffer[Network#Member]()//类型投影 泛型是Network就行
+      val members = new ArrayBuffer[Network#Member]() //类型投影 泛型是Network就行
 
       def join(name: String) = {
         val m = new Member(name)
@@ -146,7 +146,7 @@ object ClassSyllabus {
     val network2 = new Network
     val jone = network2.join("Jone") //network2.Member
 
-    nick.contacts += jone//new ArrayBuffer[Member]()时出错
+    nick.contacts += jone //new ArrayBuffer[Member]()时出错
 
 
     println("===================私有属性的访问范围===================")
