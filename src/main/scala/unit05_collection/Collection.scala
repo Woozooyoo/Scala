@@ -174,9 +174,20 @@ object Collection {
       print(k + ":" + v + ", ")
     }
 
-    println("\n============== 7、Set =================================/")
+    //option  是一个集合
+    val map = Map("name" -> "Lion", "age" -> 22)
+    println("\n" + map("age") + "22")
+    println(map.get("name"))
+    println(map.get("sex"))
+    println(map.getOrElse("sex",23))
+
+    println("============== 7、Set =================================/")
     val set1 = Set(1, 2, 2, 3) //去重
     println(set1)
+    val set2 = Set(4, 2, 2, 8)
+    println(set1 & set2)  //交 并 差
+    println(set1 ++ set2)
+    println(set1 &~ set2)
     val mutableSet = mutable.Set(1, 2, 2, 3, "3") //会出现3和"3"
     println(mutableSet)
     //没有取值 只有判断值是否存在
@@ -289,6 +300,7 @@ object Collection {
     println(namePhoneMap) //Map(15837312345 -> 孙悟空, 137373123456 -> 猪八戒)
 
     println("============== 12、stream 用到多大的区间，就会动态的生产，使用后才缓存 末尾元素遵循lazy规则。 =================================/")
+
     def recursiveStream(n: Int): Stream[Int] = {
       n #:: recursiveStream(n + 1)
     }
