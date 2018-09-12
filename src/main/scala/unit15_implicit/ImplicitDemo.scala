@@ -48,21 +48,16 @@ object ImplicitDemo1 {
 
     //1)  隐式转换为目标类型：把一种类型自动转换到另一种类型
     def foo(msg: String) = println(msg)
-
     implicit def intToString(x: Int) = x.toString
-
     foo(10)
-
 
     //2)  隐式转换调用类中本不存在的方法
     class Dog {
       val name = "金毛"
     }
-
     class Skill {
       def fly(animal: Dog, skill: String) = println(animal.name + "已领悟" + skill)
     }
-
     implicit def learningType(s: Dog) = new Skill
 
     val dog = new Dog
@@ -79,7 +74,7 @@ object ImplicitDemo1 {
     implicit class StringImprovement(val s: String) { //隐式类
       def increment = s.map(x => (x + 1).toChar)
     }
-    println("abcd".increment)//bcde
+    println("abcd".increment) //bcde
 
 
     //7	练习
