@@ -1,5 +1,6 @@
 package unit4
 
+/** itr */
 object Opera {
   def main(args: Array[String]): Unit = {
     //1、if else
@@ -72,6 +73,11 @@ object Opera {
     }
     println()
 
+    for (i <- (1 to(20, 2)).reverse) {
+      print(i + " ")
+    }
+    println()
+
     //6、输出1~9   until 前闭后开
     for (i <- 1 until 10) {
       print(i + " ")
@@ -135,11 +141,11 @@ object Opera {
     println(for (i <- 1 to 100 if i % 2 != 0) yield i)
 
     //九九乘法表
-    for (i <- 1 to 9; j <- 1 to i; m = i * j) {
+    for (i <- 1 to 9; j <- 1 to i) {
       if (i == j)
-        print(i + "x" + j + "=" + m + "\n")
+        print(j + "x" + i + "=" + (i * j) + "\n")
       else
-        print(i + "x" + j + "=" + m + "\t")
+        print(j + "x" + i + "=" + (i * j) + "\t")
     }
   }
 }
