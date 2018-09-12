@@ -48,7 +48,9 @@ object ImplicitDemo1 {
 
     //1)  隐式转换为目标类型：把一种类型自动转换到另一种类型
     def foo(msg: String) = println(msg)
+
     implicit def intToString(x: Int) = x.toString
+
     foo(10)
 
     //2)  隐式转换调用类中本不存在的方法
