@@ -104,6 +104,7 @@ object Collection {
     println("list2_2: " + list2_2)
     val list2_3 = 1 :: 2 :: 3 :: List(6, 7)
     println("list2_3: " + list2_3)
+    println(List(6, 7)++List(5, 9))
 
     println("============== 变长 ListBuffer =================================/")
     val listBuffer = ListBuffer[Int](3, 0)
@@ -188,6 +189,7 @@ object Collection {
     println(set1 & set2)  //交 并 差
     println(set1 ++ set2)
     println(set1 &~ set2)
+    println(Set(10,1,3).+(9)&~Set(4)&Set(10))
     val mutableSet = mutable.Set(1, 2, 2, 3, "3") //会出现3和"3"
     println(mutableSet)
     //没有取值 只有判断值是否存在
@@ -257,6 +259,16 @@ object Collection {
     //foldRight
     println(listFolded.foldRight(5)(_ - _))
     println((listFolded :\ 5) (_ - _))
+
+    import mutable.Set
+    def f10(i:Int,s:Set[Int]):Set[Int]={
+      s += s.size+i
+    }
+    println("面试题: "+(List(1,2,3,4) :\ Set(2))(f10))
+    def f11(i:Int,s:Set[Int]):Set[Int]={
+      (s += s.size)+i
+    }
+    println("面试题: "+(List(1,2,3,4) :\ Set(2))(f11))
 
     println(Map[Char, Int]())
     //统计一句话中，各个文字出现的次数
