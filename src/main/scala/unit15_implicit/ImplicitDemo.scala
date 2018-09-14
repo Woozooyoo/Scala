@@ -83,13 +83,13 @@ object ImplicitDemo1 {
     var date = new Date()
     implicit class date2RichDate(val date: Date) { //隐式类
       //def +(i: Int) = new Date(date.getTime+i*1000)//加一秒
-//      def +(i: Int) = new Date(date.getTime + i * 1000 * 3600 * 24)//加一天
-      def +(i: Int)= {
+      //def +(i: Int) = new Date(date.getTime + i * 1000 * 3600 * 24)//加一天
+      def +(i: Int): Date = {
         val calendar = Calendar.getInstance()
         calendar.setTime(date)
         calendar.add(Calendar.DAY_OF_YEAR, i)
         calendar.getTime
-      }   //标准的加一天
+      } //标准的加一天
     }
 
     date = date + 1 // 默认是报错的，请通过隐式转换实现为：给当前日期加1秒的效果
