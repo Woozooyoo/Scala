@@ -312,6 +312,10 @@ object Collection {
     println(namePhoneMap) //Map(15837312345 -> 孙悟空, 137373123456 -> 猪八戒)
 
     println("============== 12、stream 用到多大的区间，就会动态的生产，使用后才缓存 末尾元素遵循lazy规则。 =================================/")
+    def recursiveList(n: Int): List[Int] = {
+      n :: recursiveList(n + 1)
+    }
+//    println(recursiveList(10))  //StackOverflowError List会出错
 
     def recursiveStream(n: Int): Stream[Int] = {
       n #:: recursiveStream(n + 1)
