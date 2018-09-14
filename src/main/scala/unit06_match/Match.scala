@@ -1,12 +1,15 @@
 package unit06_match
 
+import scala.collection.mutable
+//.par是括号快捷键
+//.match是快捷键
+// 常量判断 变量赋值 下划线通吃
 object /*伴生类对象，不用构造器*/ Match {
   def main(args: Array[String]): Unit = {
     println("/************** 1、A Better Switch: n match{case '?'=> *********************************/")
     def matchCase() = {
       var result = 0
-      val c: Char = '*'
-
+      val c: Char = '*' //.match是快捷键
       c match {
         case '+' => result = 1
         case '-' => result = -1
@@ -156,10 +159,13 @@ object /*伴生类对象，不用构造器*/ Match {
     println(q, r)
     val arr = Array(1, 7, 2, 9)
     val Array(first, second, _*) = arr
-    println(arr)
+    println(arr.mkString(" "))
     println(first, second)
     val Array(fi, s, vec@_* /*将剩下的元素赋值给vec变量*/) = arr
     println(fi, s, vec)
+    val list=1::3::4::5::Nil
+    val one :: two :: rest=list
+    println(one+","+two+","+rest)
 
     println("/************** 8 Patterns in for Expressions *********************************/")
     import scala.collection.JavaConverters._
@@ -176,7 +182,7 @@ object /*伴生类对象，不用构造器*/ Match {
     println("/************** 9 Case Classes *********************************/")
     abstract class Amount
     //样例类它是为模式匹配而优化的类，样例类用case关键字进行声明
-    //会自动创建apply和unapply方法，参数一样
+    //会自动创建apply和unapply方法，参数一样 自动创建toString copy
     case class Dollar(value: Double) extends Amount
     //    def unapply(value: Double): Option[Double] = Some(value)
     case class Currency(value: Double, unit: String) extends Amount
@@ -194,6 +200,24 @@ object /*伴生类对象，不用构造器*/ Match {
     }
 
     matchCaseClass()
+
+//    练习：
+    case class Emp(name: String, salary: Double)
+    val emps=List(Emp("zhangchen",10000),Emp("guodai",20000),Emp("zhang3",22000),Emp("wang4",34444),Emp("li4",12222))
+    //以10000为一个档次  列出个各个薪酬档次的员工个数
+    //放到Map[String,Int]中
+    val resultMap = mutable.Map[String, Int]()
+    for (e <- emps) {
+      e match {
+        case Emp(_, a1) if a1 >= 0 & a1 < 10000 => resultMap += ("0到10000" -> (resultMap.getOrElse("0到10000", 0) + 1))
+        case Emp(_, a1) if a1 >= 10000 & a1 < 20000 => resultMap += ("10000到20000" -> (resultMap.getOrElse("10000到20000", 0) + 1))
+        case Emp(_, a1) if a1 >= 20000 & a1 < 30000 => resultMap += ("20000到30000" -> (resultMap.getOrElse("20000到30000", 0) + 1))
+        case Emp(_, a1) if a1 >= 30000 & a1 < 40000 => resultMap += ("30000到40000" -> (resultMap.getOrElse("30000到40000", 0) + 1))
+        case _ => println("other")
+      }
+      println(e + ": " + resultMap)
+    }
+    println(resultMap)
 
     println("/************** 10 Copy Method and Named Parameters *********************************/")
     val amt = Currency(29.95, "EUR")
@@ -276,7 +300,7 @@ object /*伴生类对象，不用构造器*/ Match {
         })
     }
 
-    println("/************** 15  Partial Functions  PartialFunction的匿名子类*********************************/")
+    println("/************** 15  Partial Functions偏函数  PartialFunction的匿名子类*********************************/")
     //偏函数，只有能力处理case的条件，超出case的条件没能力处理，
     //它只对会作用于指定类型的参数或指定范围值的参数实施计算,如果函数体里只有模式匹配就是偏函数
     val f: PartialFunction[Char /*传的参数*/ , Int /*结果*/ ] = {
