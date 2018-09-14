@@ -37,7 +37,7 @@ object HigherOrderFunction {
 
 
     //2)  高阶函数同样可以返回函数类型
-    println("============5  Closures")
+    println("============5  Closures闭包")
     def minusxy(x: Int) = /*这后面是一个单独函数，为什么能访问x*/(y: Int) => x - y
     println(minusxy(10)(20))
 
