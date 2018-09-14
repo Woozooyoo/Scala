@@ -52,19 +52,54 @@ class Node(val value: String) {
 
   // 获得反向的链表
   def getReverseNode(): Node = {
-    var oriNode = this
+    var curNode = this
     var headNode: Node = null
     var bottomNode: Node = null
-    while (oriNode != null) {
-      val value = oriNode.value
-      val curNode = new Node(value)
-      headNode = curNode
+    while (curNode != null) {
+      val value = curNode.value
+      val newNode = new Node(value)
+      headNode = newNode
       headNode.nextNode = bottomNode
-      bottomNode = curNode
+      bottomNode = newNode
 
-      oriNode = oriNode.nextNode
+      curNode = curNode.nextNode
     }
     headNode
   }
 
+  def getReverseNodeRecursive(): Node ={
+    def getRNode(curNode:Node): Node ={
+      if(curNode.nextNode==null){
+        //判断退出
+        return curNode
+      }else{
+        // 调用自己
+        val newHead=  getRNode(curNode.nextNode)  //薪火相传
+        //指针转向
+        curNode.nextNode.nextNode=curNode
+        curNode.nextNode=null
+        return newHead  //薪火相传
+      }
+
+    }
+    getRNode(this)
+
+  }
+
+  // 获得反向的链表    循环方式
+  def getReverseNode2():Node={
+    var curNode=this
+    var secondNode=curNode.nextNode
+    var thirdNode=secondNode.nextNode
+    curNode.nextNode=null
+    while(secondNode!=null){
+      //调转指针
+      secondNode.nextNode=curNode
+      //平移指针
+      curNode=secondNode
+      secondNode=thirdNode
+      if(thirdNode!=null)  thirdNode=thirdNode.nextNode
+    }
+    return curNode;
+  }
 }

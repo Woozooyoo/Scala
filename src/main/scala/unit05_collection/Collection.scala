@@ -2,6 +2,7 @@ package unit05_collection
 
 import scala.collection.mutable
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
+import scala.util.Random
 
 /**
   * 集合三要素
@@ -104,7 +105,8 @@ object Collection {
     println("list2_2: " + list2_2)
     val list2_3 = 1 :: 2 :: 3 :: List(6, 7)
     println("list2_3: " + list2_3)
-    println(List(6, 7)++List(5, 9))
+    //列表拼接  Array和Set也行
+    println(List(6, 7) ++ List(5, 9))
 
     println("============== 变长 ListBuffer =================================/")
     val listBuffer = ListBuffer[Int](3, 0)
@@ -145,6 +147,18 @@ object Collection {
     println(q1 last)
     println(q1 tail) //the queue except the first one    expect
 
+    println("============== 5、栈 =================================/")
+    //Stack:FILO
+    import scala.collection.mutable.Stack
+    val stack = new Stack[Int]
+    stack.push(1)
+    stack.push(2)
+    stack.push(3)
+    println(stack.pop())
+    println(stack.top)
+    println(stack)
+    println(stack.pop())
+    println(stack)
     println("============== 6、Map key 和value的类型都无所谓 =================================/")
     val map1 = Map("Alice" -> 22, "Bob" -> 21, "Kotlin" -> 20)
     println(map1)
@@ -180,16 +194,16 @@ object Collection {
     println("\n" + map("age") + "22")
     println(map.get("name"))
     println(map.get("sex"))
-    println(map.getOrElse("sex",23))
+    println(map.getOrElse("sex", 23))
 
     println("============== 7、Set =================================/")
     val set1 = Set(1, 2, 2, 3) //去重
     println(set1)
     val set2 = Set(4, 2, 2, 8)
-    println(set1 & set2)  //交 并 差
+    println(set1 & set2) //交 并 差
     println(set1 ++ set2)
     println(set1 &~ set2)
-    println(Set(10,1,3).+(9)&~Set(4)&Set(10))
+    println(Set(10, 1, 3).+(9) &~ Set(4) & Set(10))
     val mutableSet = mutable.Set(1, 2, 2, 3, "3") //会出现3和"3"
     println(mutableSet)
     //没有取值 只有判断值是否存在
@@ -261,14 +275,17 @@ object Collection {
     println((listFolded :\ 5) (_ - _))
 
     import mutable.Set
-    def f10(i:Int,s:Set[Int]):Set[Int]={
-      s += s.size+i
+    def f10(i: Int, s: Set[Int]): Set[Int] = {
+      s += s.size + i
     }
-    println("面试题: "+(List(1,2,3,4) :\ Set(2))(f10))
-    def f11(i:Int,s:Set[Int]):Set[Int]={
-      (s += s.size)+i
+
+    println("面试题: " + (List(1, 2, 3, 4) :\ Set(2)) (f10))
+
+    def f11(i: Int, s: Set[Int]): Set[Int] = {
+      (s += s.size) + i
     }
-    println("面试题: "+(List(1,2,3,4) :\ Set(2))(f11))
+
+    println("面试题: " + (List(1, 2, 3, 4) :\ Set(2)) (f11))
 
     println(Map[Char, Int]())
     //统计一句话中，各个文字出现的次数
@@ -278,6 +295,15 @@ object Collection {
     //((m是上一步的结果Map(), c是下一个元素"一") => m是Map() + 映射关系(c "一" -> (m.getOrElse(c, 0)有就得到次数，else没有就默认给(c,0)的映射 + 1)))
     val mapCount = (Map[Char, Int]() /: sentence) ((m, c) => m + (c -> (m.getOrElse(c, 0) + 1)))
     println(mapCount)
+    def charCount(map:Map[Char, Int],char:Char):Map[Char, Int]={
+      map  + (char -> (map.getOrElse(char, 0) + 1))
+    }
+    val mapCount1 = sentence.toCharArray.foldLeft (Map[Char, Int]()) (charCount)
+    println(mapCount1)
+    val mapCount2 = sentence.toCharArray.foldLeft (Map[Char, Int]()) ((m, c) => m + (c -> (m.getOrElse(c, 0) + 1)))
+    println(mapCount2)
+    println(sentence.groupBy(s=>"\""+s+"\""))
+    println(sentence.groupBy(s=>"\""+s+"\"").map(t=>(t._1,t._2.length)))
 
     println("======================scan方法======================")
     //    这个理解需要结合上面的知识点，扫描，即对某个集合的所有元素做fold操作，但是会把产生的所有中间结果放置于一个集合中保存。
@@ -312,10 +338,11 @@ object Collection {
     println(namePhoneMap) //Map(15837312345 -> 孙悟空, 137373123456 -> 猪八戒)
 
     println("============== 12、stream 用到多大的区间，就会动态的生产，使用后才缓存 末尾元素遵循lazy规则。 =================================/")
+
     def recursiveList(n: Int): List[Int] = {
       n :: recursiveList(n + 1)
     }
-//    println(recursiveList(10))  //StackOverflowError List会出错
+    //    println(recursiveList(10))  //StackOverflowError List会出错
 
     def recursiveStream(n: Int): Stream[Int] = {
       n #:: recursiveStream(n + 1)
@@ -343,6 +370,12 @@ object Collection {
     println(s2) //Stream(2, ?)
     println(numStream1) //Stream(0, 1, 2, ?)
 
+    def randomNum():Stream[Int]={
+      Random.nextInt(100000)#::randomNum()
+    }
+//    def isMo
+    //    randomNum().filter(num=> )
+
     def Recursive(n: Any): Stream[Any] = {
       n #:: Recursive("Sofia")
     }
@@ -368,5 +401,6 @@ object Collection {
     //    val result2 = (0 to 10000000).par.map { case _ => Thread.currentThread.getName }.distinct
     //    println(result1)  //main线程
     //    println(result2)  //12线程
+    (1 to 5).par.foreach(print(_))  //parallel
   }
 }
