@@ -5,7 +5,7 @@ import java.util.{Calendar, Date}
 
 import scala.io.Source
 
-object ImplicitDemo1 {
+object ImplicitDemo {
   def main(args: Array[String]): Unit = {
     println("=============1  Implicit Conversions 隐式转换函数 implicit def===============")
 
