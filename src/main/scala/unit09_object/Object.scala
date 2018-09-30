@@ -20,6 +20,7 @@ object Object extends App {
 
   class SingletonObject private /*单例的重点*/ (val sex: String, name: String) {
     println("class SingletonObject private已初始化...")
+
     def describe = {
       println("Sex:" + sex + " Name:" + name)
     }
@@ -27,11 +28,15 @@ object Object extends App {
 
   object SingletonObject {
     println("object SingletonObject 已初始化...")
-    var instance: SingletonObject = null
+    var instance: SingletonObject = _
 
     def apply(name: String) = {
       if (instance == null) {
-        instance = new SingletonObject("Man", name)
+        synchronized {
+          if (instance == null) {
+            instance = new SingletonObject("Man", name)
+          }
+        }
       }
       instance
     }
@@ -50,11 +55,11 @@ object Object extends App {
   }
 
   println(TrafficColorLighting.RED + ","
-        + TrafficColorLighting.RED.id)
+    + TrafficColorLighting.RED.id)
   println(TrafficColorLighting.YELLOW + ","
-        + TrafficColorLighting.YELLOW.id)
+    + TrafficColorLighting.YELLOW.id)
   println(TrafficColorLighting.GREEN + ","
-        + TrafficColorLighting.GREEN.id)
+    + TrafficColorLighting.GREEN.id)
 
 
 }
