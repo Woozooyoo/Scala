@@ -30,7 +30,7 @@ object Collection {
     println((arr2 :+ "???") mkString " ") //??? 1 10 3
     println(("???" +: arr2) mkString " ") //??? 1 10 3
 
-    println("==============  变长数组ArrayBuffer =================================/")
+    println("==============  变长数组ArrayBuffer 等与java的ArrayList 数组结构 有下标索引快 追加元素会扩容=================================/")
     //小括号可以存放初始化的元素内容
     val arrBuffer1 = ArrayBuffer[Int](10, 9, 8)
     println(arrBuffer1) //ArrayBuffer(10, 9, 8)
@@ -45,7 +45,7 @@ object Collection {
 
     //追加出新的arrayBuffer :+
     println(arrBuffer1 :+ 99) //ArrayBuffer(10, -1, 8, 1, 2, 3, 99)
-    println(99 +: arrBuffer1) //ArrayBuffer(10, -1, 8, 1, 2, 3, 99)
+    println(99 +: arrBuffer1) //ArrayBuffer(99, 10, -1, 8, 1, 2, 3)
 
     println("============== 定义多维数组 =================================/")
     val arr4 = Array.ofDim[Int](3, 4) //一定要有泛型
@@ -108,7 +108,7 @@ object Collection {
     //列表拼接  Array和Set也行
     println(List(6, 7) ++ List(5, 9))
 
-    println("============== 变长 ListBuffer =================================/")
+    println("============== 变长 ListBuffer 相当于LinkedList 链表结构 插入快toList速度更快 按下标取值慢=================================/")
     val listBuffer = ListBuffer[Int](3, 0)
     //append追加在原有的ListBuffer里追加，不形成新的集合
     listBuffer append(1, 2)
@@ -295,11 +295,13 @@ object Collection {
     //((m是上一步的结果Map(), c是下一个元素"一") => m是Map() + 映射关系(c "一" -> (m.getOrElse(c, 0)有就得到次数，else没有就默认给(c,0)的映射 + 1)))
     val mapCount = (Map[Char, Int]() /: sentence) ((m, c) => m + (c -> (m.getOrElse(c, 0) + 1)))
     println(mapCount)
+
     def charCount(map:Map[Char, Int],char:Char):Map[Char, Int]={
       map  + (char -> (map.getOrElse(char, 0) + 1))
     }
     val mapCount1 = sentence.toCharArray.foldLeft (Map[Char, Int]()) (charCount)
     println(mapCount1)
+
     val mapCount2 = sentence.toCharArray.foldLeft (Map[Char, Int]()) ((m, c) => m + (c -> (m.getOrElse(c, 0) + 1)))
     println(mapCount2)
     println(sentence.groupBy(s=>"\""+s+"\""))

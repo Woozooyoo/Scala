@@ -71,7 +71,7 @@ object Opera {
     for (i <- Range(10, 0, -1)) {
       print(i + " ")
     }
-    println()
+    println("Range(10, 0, -1)")
 
     for (i <- (1 to(20, 2)).reverse) {
       print(i + " ")
