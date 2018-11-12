@@ -195,6 +195,7 @@ object Collection {
     println(map.get("name"))
     println(map.get("sex"))
     println(map.getOrElse("sex", 23))
+    println(map.head)
 
     println("============== 7、Set =================================/")
     val set1 = Set(1, 2, 2, 3) //去重
